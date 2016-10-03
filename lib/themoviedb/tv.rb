@@ -25,6 +25,7 @@ module Tmdb
       :poster_path,
       :seasons,
       :status,
+      :translations,
       :vote_average,
       :vote_count,
       :credits,
@@ -75,6 +76,12 @@ module Tmdb
     # Get the images (posters and backdrops) for a TV series.
     def self.images(id, _conditions = {})
       search = Tmdb::Search.new("/#{endpoints[:singular]}/#{endpoint_id + id.to_s}/images")
+      search.fetch_response
+    end
+
+    # Get the translations for a specific TV show id.
+    def self.translations(id, _conditions = {})
+      search = Tmdb::Search.new("/#{endpoints[:singular]}/#{endpoint_id + id.to_s}/translations")
       search.fetch_response
     end
   end
